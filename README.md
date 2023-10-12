@@ -48,3 +48,9 @@
 You can also note the following commands
 - kubectl delete deployment modgetweb [To delete the deployment]
 - minikube stop [to stop the minikube service]
+
+## <ins>Creating more deployments using minikube</ins>
+- ***kubectl create deployment redis  --image=redis*** [The name of the deployment will be Redis and the image we shall be using is Redis]
+- ***kubectl get deployments *** [To confirm the deployment]
+- ***kubectl describe deployment redis *** [To view the deployment details]
+- ***kubectl get deployments redis -o yaml***[Existing items in a usable YAML output]
