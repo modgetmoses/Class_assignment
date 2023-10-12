@@ -40,3 +40,12 @@ sudo apt install docker.io <install the docker engine>
 ## <ins>Working with Minikube</ins>
 - minikube start --driver=docker [This will start a Kubernetes cluster on your local machine using the Docker driver. minikube will create a Docker container running Kubernetes and all of the necessary Kubernetes components]
 - kubectl get nodes [This will print a list of all nodes in the cluster, along with their status.]
+
+## <ins>Creating a deployment</ins>
+- kubectl create deployment modgetweb --image=nginx:latest [This will create a deployment object in Kubernetes that specifies the desired state of the deployment. The deployment object will tell Kubernetes to create a set of replicas of the nginx:latest image.]
+- kubectl get deployments [This is use to verify our deployment. This will print a list of all deployments in your cluster, along with their status. The status of the deployment should be Ready once all of the replicas are running and healthy]
+- kubectl expose deployment modgetweb --type=NodePort --port=8080 [This will create a service object in Kubernetes that exposes the modgetweb deployment on a NodePort. A NodePort is a static port on a node that is accessible from outside the cluster.]
+- kubectl get service [o get a list of all services in your Kubernetes cluster using kubectl]
+You can also note the following commands
+- kubectl delete deployment modgetweb [To delete the deployment]
+- minikube stop [to stop the minikube service]
