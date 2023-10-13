@@ -53,4 +53,36 @@ You can also note the following commands
 - ***kubectl create deployment redis  --image=redis*** [The name of the deployment will be Redis and the image we shall be using is Redis]
 - ***kubectl get deployments *** [To confirm the deployment]
 - ***kubectl describe deployment redis *** [To view the deployment details]
-- ***kubectl get deployments redis -o yaml***[Existing items in a usable YAML output]
+- ***kubectl get deployments redis -o yaml*** [Display existing items in a usable YAML output]
+- ***vim deploymentfile.yml*** [fill in data as below :]
+    apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 80
+	  protocol: TCP
+  - ***kubectl expose deployment redis*** [expose the deployment]
+  - ***kubectl get svc redis*** [Verify the service configuration]
+  - ***kubectl get ep redis*** [This will output Kubernetes Service called redis that is exposing 3 172.17.0.5:6379. These endpoints is the IP address and port of one of the Redis pods in your cluster.]
+   - ***kubectl get pods*** [display the Redis pods]
+
+## <ins>Scaling up a deployment redis databases</ins>
+-  ***kubectl get deployment redis*** [Confirm the number of deployments]
+-  ***kubectl scale deployment redis --replicas=10*** [Increase the number of deployment to 10]
+-  ***kubectl get pods*** [To confirm the 10 pods created above]
